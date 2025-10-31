@@ -1,9 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\JetBrainsTask.Domain.csproj" />
     <ProjectReference Include="..\Application\JetBrainsTask.Application.csproj" />
     <ProjectReference Include="..\Infrastructure\JetBrainsTask.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="MdXaml" Version="1.27.0" />
   </ItemGroup>
 
   <PropertyGroup>
