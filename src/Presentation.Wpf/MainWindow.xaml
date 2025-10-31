@@ -3,10 +3,60 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JetBrainsTask.Presentation.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LLM Diff Prompt Tool" Height="650" Width="1100"
+        WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2.5*" />
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="8">
+            <Button Content="Build prompt"
+                    Width="120"
+                    Margin="0,0,8,0"
+                    Command="{Binding BuildPromptCommand}" />
+            <TextBlock Text="File name:" VerticalAlignment="Center" Margin="0,0,4,0" />
+            <TextBox Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}"
+                     Width="180" Margin="0,0,12,0" />
+            <TextBlock Text="Edit code in editors and click 'Build prompt'." VerticalAlignment="Center" />
+        </StackPanel>
+
+        <GroupBox Header="Original code"
+                  Grid.Row="1" Grid.Column="0" Margin="8">
+            <TextBox Text="{Binding OriginalCode, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True" AcceptsTab="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     FontFamily="Consolas"
+                     TextWrapping="NoWrap" />
+        </GroupBox>
+
+        <GroupBox Header="Modified code"
+                  Grid.Row="1" Grid.Column="1" Margin="8">
+            <TextBox Text="{Binding ModifiedCode, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True" AcceptsTab="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     FontFamily="Consolas"
+                     TextWrapping="NoWrap" />
+        </GroupBox>
+
+        <GroupBox Header="Generated prompt"
+                  Grid.Row="1" Grid.Column="2" Margin="8">
+            <TextBox Text="{Binding PromptText}"
+                     IsReadOnly="True"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     FontFamily="Consolas"
+                     TextWrapping="NoWrap" />
+        </GroupBox>
     </Grid>
 </Window>
