@@ -15,8 +15,7 @@ namespace JetBrainsTask.Infrastructure.Llm
         {
             apiKey ??= Environment.GetEnvironmentVariable("OPENAI_API_KEY")
                        ?? throw new InvalidOperationException("OPENAI_API_KEY is not set.");
-
-            // новый openai .NET SDK
+            
             _chatClient = new ChatClient(model, apiKey);
         }
 
