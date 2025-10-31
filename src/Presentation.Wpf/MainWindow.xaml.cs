@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using DefaultNamespace;
+using JetBrainsTask.Infrastructure.Llm;
 
 namespace JetBrainsTask.Presentation.Wpf;
 
@@ -9,11 +10,16 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        // manual DI
-        var diffService = new SimpleLineDiffService();
+        // infra
+        var diff = new SimpleLineDiffService();
         var promptBuilder = new DefaultPromptBuilder();
-        var buildPromptService = new BuildPromptService(diffService, promptBuilder);
+        var llmClient = new OpenAiLlmClient(); 
 
-        DataContext = new MainViewModel(buildPromptService);
+        // application
+        var buildPromptService = new BuildPromptService(diff, promptBuilder);
+        var analyzeWithLlm = new AnalyzeCodeWithLlmService(buildPromptService, llmClient);
+
+        // vm
+        DataContext = new MainViewModel(buildPromptService, analyzeWithLlm);
     }
 }
