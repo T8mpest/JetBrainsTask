@@ -18,17 +18,18 @@
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="8">
-            <Button Content="Build prompt"
-                    Width="120"
-                    Margin="0,0,8,0"
+            <Button Content="Open original…" Command="{Binding OpenOriginalCommand}" Margin="0,0,8,0"/>
+            <Button Content="Open as Modified…" Command="{Binding OpenModifiedCommand}" Margin="0,0,16,0"/>
+            <CheckBox Content="Also fill Modified" IsChecked="{Binding AlsoFillModified}" />
+    
+            <Button Content="Build prompt" Width="120" Margin="0,0,8,0"
                     Command="{Binding BuildPromptCommand}" />
-            <Button Content="Send to LLM"
-                    Width="120"
-                    Margin="0,0,8,0"
+            <Button Content="Send to LLM" Width="120" Margin="0,0,8,0"
                     Command="{Binding SendToLlmCommand}" />
-            <TextBlock Text="File name:" VerticalAlignment="Center" Margin="0,0,4,0" />
+
+            <TextBlock Text="File name:" VerticalAlignment="Center" Margin="8,0,4,0" />
             <TextBox Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}"
-                     Width="180" Margin="0,0,12,0" />
+                     Width="220" Margin="0,0,12,0" />
             <TextBlock Text="Edit code in editors and click 'Build prompt'." VerticalAlignment="Center" />
         </StackPanel>
         
